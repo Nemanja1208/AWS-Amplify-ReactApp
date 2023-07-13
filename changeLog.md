@@ -42,4 +42,40 @@ Process of deploying React App to AWS Amplify
 
 14. We deploy the Auth to Amplify with `amplify push --y` - This will trigger AWS CloudFormation, AWS Congito, Lambda and IAM Policy to create some necessary configuration
 
-15. We configure React in index.js
+15. We configure React in index.js and App.js
+
+# Setting up CI/CD for frontend/backend
+
+16. Run `amplify console` to open the Amplify console. From the navigation pane, choose `App settings > Build settings`.
+
+17. Modify it to add the backend section (lines 2-7 in the code below) to your `amplify.yml`. After making the edits, choose Save.
+
+```version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - '# Execute Amplify CLI with the helper script'
+        - amplifyPush --simple
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - yarn install
+    build:
+      commands:
+        - yarn run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+```
+
+18. Editing Build image settings and choosing Amplify CLI as package version override
+
+19. Go to Frontend branch in Amplify App Home and edit so that the backend environment is `staging`
+
+19a. If you get a `setup a service role` ERROR, follow the instructions from there and you should be good.
