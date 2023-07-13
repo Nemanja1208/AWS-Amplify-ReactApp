@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "amplifysampleappd2209948": {}
+      },
+      "api": {
+        "amplifysampleapp": {}
       }
     }
   }

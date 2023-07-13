@@ -79,3 +79,41 @@ frontend:
 19. Go to Frontend branch in Amplify App Home and edit so that the backend environment is `staging`
 
 19a. If you get a `setup a service role` ERROR, follow the instructions from there and you should be good.
+
+# Add a GraphQL API and Database
+
+20. Adding GraphQL through Amplify CLI `amplify add api` choose GraphQL, schema template should be `Single object with fields` and choose `yes` to edit schema directly
+
+21. Add this instead of Todo
+
+```
+type Note @model @auth(rules: [ { allow: public } ] ){
+  id: ID!
+  name: String!
+  description: String
+}
+```
+
+22. Deploy the API with `amplify push --y`
+
+23. This will do three things:
+
+Create the AWS AppSync API
+Create a DynamoDB table
+Create the local GraphQL operations in a folder located at src/graphql that you can use to query the API
+To view the GraphQL API in your account at any time, run the following command and then select GraphQL API in the left navigation pane:
+
+```
+amplify console api
+
+> Choose GraphQL
+```
+
+24. Updating App.js with new stuff
+    Our app has three main functions:
+
+    `fetchNotes` - This function uses the API class to send a query to the GraphQL API and retrieve a list of notes.
+
+    `createNote` - This function also uses the API class to send a mutation to the GraphQL API. The main difference is that in this function we are passing in the variables needed for a GraphQL mutation so that we can create a new note with the form data
+
+    `deleteNote` - Like createNote, this function is sending a GraphQL mutation along with some variables, but instead of creating a note, we are deleting a note.
