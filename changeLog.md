@@ -14,7 +14,7 @@ Process of deploying React App to AWS Amplify
 
 7. Pushing the changes from your main/master branch will automatically trigger a new build in the AWS Amplify Service and your changes will be live
 
-# Extra
+# Amplify CLI Configuration for local development
 
 8. Now that we have initialized a new Amplify project in our account, we want to bring it down into our local environment so we can continue development and add new features.
 
@@ -33,3 +33,13 @@ Process of deploying React App to AWS Amplify
 10e. We add the ID and Secret Key it to the CLI prompt and we have successfully configured our Amplify CLI (local machine)
 
 # Adding Authentication
+
+11. Installing libraries `npm install aws-amplify @aws-amplify/ui-react`
+
+12. For some reason we need to run `amplify init` in order to start adding authorization and other services
+
+13. Adding Authorization through Amplify `amplify add auth` and we choose default auth and security config and `Username` as sign in
+
+14. We deploy the Auth to Amplify with `amplify push --y` - This will trigger AWS CloudFormation, AWS Congito, Lambda and IAM Policy to create some necessary configuration
+
+15. We configure React in index.js
