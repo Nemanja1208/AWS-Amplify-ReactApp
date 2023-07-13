@@ -117,3 +117,26 @@ amplify console api
     `createNote` - This function also uses the API class to send a mutation to the GraphQL API. The main difference is that in this function we are passing in the variables needed for a GraphQL mutation so that we can create a new note with the form data
 
     `deleteNote` - Like createNote, this function is sending a GraphQL mutation along with some variables, but instead of creating a note, we are deleting a note.
+
+# Adding storage
+
+25. We ofc add storage through Amplify CLI `amplify add storage`, when prompted choose `content` and pick name for S3 bucket, give access only to Auth users only, access should be CRUD and do not trigger Lambda.
+
+26. Update GraphQL schema with :
+
+```
+type Note @model @auth(rules: [ { allow: public } ] ){
+  id: ID!
+  name: String!
+  description: String
+  image: String
+}
+```
+
+27. Deploy changes with `amplify push --y`
+
+28. Updating App.js with appropriate code
+
+29. Push to github
+
+30. That's all folks...
