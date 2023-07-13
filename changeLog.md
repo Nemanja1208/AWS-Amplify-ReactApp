@@ -140,3 +140,5 @@ type Note @model @auth(rules: [ { allow: public } ] ){
 29. Push to github
 
 30. That's all folks...
+
+### P.S If you want to delete everything you worked with here in AWS because of, I do not know, costs and etc, you can use `amplify delete` to delete the project and the associated resources
