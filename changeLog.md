@@ -36,7 +36,7 @@ Process of deploying React App to AWS Amplify
 
 11. Installing libraries `npm install aws-amplify @aws-amplify/ui-react`
 
-12. For some reason we need to run `amplify init` in order to start adding authorization and other services
+12. Initialize Amplify with `amplify init` in order to start adding authorization and other services
 
 13. Adding Authorization through Amplify `amplify add auth` and we choose default auth and security config and `Username` as sign in
 
